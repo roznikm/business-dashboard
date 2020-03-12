@@ -6,6 +6,9 @@ import AppBar from './Components/NavBar';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import TotalValue from './Components/TotalValue';
 import AveLeaseRate from './Components/AveLeaseRate'; 
+import TotalOutstandingLeases from './Components/TotalOutstandingLeases'; 
+import ProfitPotential from './Components/ProfitPotential'; 
+import BrandSaleType from './Components/BrandSaleType'; 
 
 const publicSpreadsheetUrl =
   'https://docs.google.com/spreadsheets/d/1J7kQMOyQqGg1OYPu9b1qKzJ9Naq7vUppG93JUdSdOAQ/edit?usp=sharing';
@@ -28,8 +31,8 @@ const App = () => {
   return (
     <div className='App'>
       <AppBar />
-      <Container fluid={true}>
-        <Row>
+      <Container fluid={true} className='mt-4'>
+        <Row >
           <Col lg='3' sm='6'>
             <Card>
               <CardHeader>
@@ -46,7 +49,7 @@ const App = () => {
           <Col lg='3' sm='6'>
             <Card>
               <CardHeader>
-                <div>Average Lease Rate</div>
+                <div>Average Lease Rate Outstanding</div>
               </CardHeader>
               <CardBody>
                 <span><AveLeaseRate items={items}/></span>
@@ -56,20 +59,34 @@ const App = () => {
           <Col lg='3' sm='6'>
             <Card>
               <CardHeader>
-                <div>Total Revenue</div>
+                <div>Total # of Leases Outstanding</div>
               </CardHeader>
               <CardBody>
-                <span>$ <AveLeaseRate items={items}/> </span>
+                <span> <TotalOutstandingLeases items={items}/> </span>
               </CardBody>
             </Card>
           </Col>
           <Col lg='3' sm='6'>
             <Card>
               <CardHeader>
-                <div>Total Revenue</div>
+                <div>Lease Portfolio Profit Potential: No Defaults</div>
               </CardHeader>
               <CardBody>
-                <span>$</span>
+                <span>$<ProfitPotential items={items}/></span>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+        </Container>
+        <Container fluid={true} className='mt-4'>
+        <Row>
+          <Col lg='6' sm='12'>
+            <Card>
+              <CardHeader>
+                <div>Lease Summary By Brand</div>
+              </CardHeader>
+              <CardBody>
+                <span> <BrandSaleType items={items}/> </span>
               </CardBody>
             </Card>
           </Col>
