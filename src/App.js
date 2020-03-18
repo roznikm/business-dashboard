@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Tabletop from 'tabletop';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import AppBar from './Components/NavBar';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import TotalValue from './Components/TotalValue';
-import AveLeaseRate from './Components/AveLeaseRate'; 
-import TotalOutstandingLeases from './Components/TotalOutstandingLeases'; 
-import ProfitPotential from './Components/ProfitPotential'; 
-import BrandSaleType from './Components/BrandSaleType'; 
+import AveLeaseRate from './Components/AveLeaseRate';
+import TotalOutstandingLeases from './Components/TotalOutstandingLeases';
+import ProfitPotential from './Components/ProfitPotential';
+import BrandSaleType from './Components/BrandSaleType';
+import LeaseType from './Components/LeaseType';
+import ExpiringTable from './Components/ExpiringTable';
+import BarchartMonthly from './Components/BarchartMonthly'; 
 
 const publicSpreadsheetUrl =
   'https://docs.google.com/spreadsheets/d/1J7kQMOyQqGg1OYPu9b1qKzJ9Naq7vUppG93JUdSdOAQ/edit?usp=sharing';
@@ -32,7 +36,7 @@ const App = () => {
     <div className='App'>
       <AppBar />
       <Container fluid={true} className='mt-4'>
-        <Row >
+        <Row>
           <Col lg='3' sm='6'>
             <Card>
               <CardHeader>
@@ -52,7 +56,9 @@ const App = () => {
                 <div>Average Lease Rate Outstanding</div>
               </CardHeader>
               <CardBody>
-                <span><AveLeaseRate items={items}/></span>
+                <span>
+                  <AveLeaseRate items={items} />
+                </span>
               </CardBody>
             </Card>
           </Col>
@@ -62,23 +68,28 @@ const App = () => {
                 <div>Total # of Leases Outstanding</div>
               </CardHeader>
               <CardBody>
-                <span> <TotalOutstandingLeases items={items}/> </span>
+                <span>
+                  {' '}
+                  <TotalOutstandingLeases items={items} />{' '}
+                </span>
               </CardBody>
             </Card>
           </Col>
           <Col lg='3' sm='6'>
             <Card>
               <CardHeader>
-                <div>Lease Portfolio Profit Potential: No Defaults</div>
+                <div> Potential Lease Portfolio Profit </div>
               </CardHeader>
               <CardBody>
-                <span>$<ProfitPotential items={items}/></span>
+                <span>
+                  $<ProfitPotential items={items} />
+                </span>
               </CardBody>
             </Card>
           </Col>
         </Row>
-        </Container>
-        <Container fluid={true} className='mt-4'>
+      </Container>
+      <Container fluid={true} className='mt-4'>
         <Row>
           <Col lg='6' sm='12'>
             <Card>
@@ -86,7 +97,54 @@ const App = () => {
                 <div>Lease Summary By Brand</div>
               </CardHeader>
               <CardBody>
-                <span> <BrandSaleType items={items}/> </span>
+                <span>
+                  {' '}
+                  <BrandSaleType items={items} />{' '}
+                </span>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col lg='6' sm='12'>
+            <Card>
+              <CardHeader>
+                <div>Lease Summary By Type</div>
+              </CardHeader>
+              <CardBody>
+                <span>
+                  {' '}
+                  <LeaseType items={items} />{' '}
+                </span>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid={true} className='mt-4'>
+        <Row>
+          <Col lg='12' sm='12'>
+          <Card>
+            <CardHeader>
+              <div>Lease Sales By Month</div>
+            </CardHeader>
+            <CardBody>
+              <span> <BarchartMonthly items={items}/> </span>
+            </CardBody>
+            </Card>
+            </Col>
+        </Row>
+      </Container>
+      <Container fluid={true} className='mt-4'>
+        <Row>
+          <Col lg='12' sm='12'>
+            <Card>
+              <CardHeader>
+                <div>Expiring Leases</div>
+              </CardHeader>
+              <CardBody>
+                <span>
+                  {' '}
+                  <ExpiringTable items={items} />{' '}
+                </span>
               </CardBody>
             </Card>
           </Col>
